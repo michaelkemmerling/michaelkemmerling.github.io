@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>research_BP.knit</title>
+
+<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="research.html">
+    <span class="fa fa-flask"></span>
+     
+    Research
+  </a>
+</li>
+<li>
+  <a href="teaching.html">
+    <span class="fa fa-chalkboard"></span>
+     
+    Teaching
+  </a>
+</li>
+<li>
+  <a href="curriculum-vitae.html">
+    <span class="fa fa-id-card"></span>
+     
+    CV
+  </a>
+</li>
+<li>
+  <a href="https://pcdc.timoseidl.com/">
+    <span class="fa fa-book"></span>
+     
+    PCDC
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="business-power-in-digitalized-capitalism"
+class="section level1">
+<h1><span class="header-1">Business power in digital(ized)
+capitalism</span></h1>
+<div
+id="how-does-digitalization-affect-the-power-resources-political-preferences-and-lobbying-strategies-of-firms"
+class="section level2">
+<h2><span class="header-2">How does digitalization affect the power
+resources, political preferences, and lobbying strategies of
+firms?</span></h2>
+<div align="justify">
+<p>Digitalization fundamentally restructures value-creation in
+capitalist economies. Concepts such as surveillance, digital, or
+platform capitalism emphasize how data, digital technologies, and
+digital infrastructures increasingly shape economic and social
+activities. While an emerging literature in management studies and
+economics studies new digital(ized) business models, the implications
+for the political power of business remain understudied. By identifying
+a consumer-platform alliance against platform regulation, existing
+studies narrowly focus on digital platform firms but neglect non-digital
+firms and non-platform-based business models. Further, the literature
+all but ignores the related field of lobbying and interest group
+studies. To broaden and complement the platform power debate, my
+dissertation asks how digitalization affects (1) the power resources,
+(2) political preferences, and (3) lobbying strategies of business. I
+address these questions in a series of three interrelated research
+papers. <br /></p>
+</div>
+<div
+id="digital-power-resources-dpr-the-political-economy-of-structural-and-infrastructural-business-power-in-digitalized-capitalism"
+class="section level3">
+<h3><a
+href="https://academic.oup.com/ser/advance-article-abstract/doi/10.1093/ser/mwac059/6765306">Digital
+power resources (DPR): the political economy of structural and
+infrastructural business power in digital(ized) capitalism</a></h3>
+<div align="justify">
+<p>In the first article, co-authored with Christine Trampusch, we argue
+that much as digitalization has transformed business models across all
+sectors of the economy, it also transformed the power resources of
+non-digital firms. We introduce the concept of digital power resources
+that (1) can be structural (control over data) and infrastructural
+(control over platforms and standards), (2) are accumulated by firms of
+all sectors, not only the digital and ICT sector, and (3) vary in their
+cross-sectoral distribution across different national contexts. We
+illustrate the validity of our concept with a case study on the German
+automotive sector. <br /> <br /></p>
+</div>
+<div style="float:right;position: relative;padding:30px;top:-20px">
+<p><img src="files/Paper1.jpg" /></p>
+</div>
+</div>
+<div id="the-political-preferences-of-firms-in-platform-capitalism"
+class="section level3">
+<h3>The Political Preferences of Firms in Platform Capitalism</h3>
+<div align="justify">
+<p>My second article studies the political preferences and lobbying
+coalitions of platform-dependent businesses. I argue that
+platform-dependency can lead to an alignment of preferences between
+platform-dependent businesses and the platform itself. As downstream
+users of platform infrastructures, complementors (e.g. third-party
+sellers, news publishers, content producers etc.) are reliant on the
+continuous operation of platform ecosystems – even though platforms
+engage in anti-competitive practices and extract rents. I hypothesize
+that platform-complementor coalitions are likely to emerge on issues
+regulating the entire ecosystem, while issues that regulate within
+ecosystem conflicts lead to diverging preferences between platforms and
+complementors. To test this hypothesis, I plan a mixed-methods study.
+The paper combines a quantitative analysis of lobbying coalitions on
+legislation proposed in the 116th US Congress with an in-depth case
+study of the Journalism Competition and Preservation Act of 2022. <br />
+<br /></p>
+</div>
+</div>
+<div
+id="saving-the-internet-when-are-digital-platforms-successful-with-outside-lobbying"
+class="section level3">
+<h3>Saving the Internet: (when) are digital platforms successful with
+outside lobbying?</h3>
+<div align="justify">
+<p>In my third article, I compare the lobbying success of platforms in
+the case of the US Stop Online Piracy Act of 2012 with the EU Copyright
+Directive of 2019. Using a combination of process-tracing and
+text-as-data methods I find that platforms in both cases adopted outside
+lobbying strategies to increase issue-salience and tried to reframe the
+discussion. However, they were only successful in preventing legislation
+in the US. In the EU a fragmented (i.e. nationalized) debate and the
+resulting persistence of strong counter-frames in some member states
+hindered platform power. <br /><br /></p>
+</div>
+<div style="float:right;position: relative;padding:30px;top:-20px">
+<p><img src="files/Paper3.jpg" /></p>
+</div>
+<p><br /> <br /><br /> <br /><br /> <br /><br /> <br /> <br />
+<br /><br /> <br /><br /> <br /><br /> <br /> <br /> <br /><br />
+<br /><br /> <br /><br /> <br /> <br /> <br /></p>
+</div>
+</div>
+</div>
+
+<footer class="page-footer">
+    <p class="right"><span class="about-section">Contact</span><br /><br />
+      <a href="mailto:kemmerling@mpifg.de" class="about-link">
+        <i class="fa fa-envelope"></i>
+      <span class="about-link-text">kemmerling@mpifg.de</span>
+      </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><br /><br />
+    </p>
+    <p class="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="about-section">Address</span><br /><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cologne Center for Comparative Politics<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Herbert-Lewin-Straße 2<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50931 Cologne<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Germany<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Room 1.03
+    </p>
+    <p class="centered"> <span class="about-section">Social Media</span><br /><br />
+      <a href="https://twitter.com/m_kemmerling" class="about-link">
+        <i class="fab fa-twitter"></i>
+        <span class="about-link-text">Twitter</span>
+      </a>
+      <br />
+      <a href="https://mastodon.social/@m_kemmerling" class="about-link">
+        <i class="fab fa-mastodon"></i>
+        <span class="about-link-text">Mastodon</span>
+      </a>
+      <br />
+      <a href="https://scholar.google.com/citations?user=WK6zy9wAAAAJ&hl=en&oi=ao" class="about-link">
+        <i class="fa fa-graduation-cap"></i>
+        <span class="about-link-text">Google Scholar</span>
+      </a><br /><br /><br /><br />
+    </p>
+</footer>
+
+
+
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
